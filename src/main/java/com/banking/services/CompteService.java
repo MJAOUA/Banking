@@ -34,7 +34,7 @@ public class CompteService implements ICompteService{
 	
 	@Override
 	public void DeleteCompte(Long id) {
-		CompteRepository.findById(id).get().setUser(null);
+		//CompteRepository.findById(id).get().setUser(null);
 		CompteRepository.deleteById(id);
 	}
 	

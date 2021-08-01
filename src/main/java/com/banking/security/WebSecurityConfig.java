@@ -18,6 +18,7 @@ import com.banking.security.jwt.AuthEntryPointJwt;
 import com.banking.security.jwt.AuthTokenFilter;
 import com.banking.security.services.UserDetailsServiceImpl;
 
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
