@@ -62,9 +62,11 @@ public class User {
 	private String profession;
 	
 	@Column(name="Etat_Civile")
+	@Enumerated(EnumType.STRING)
 	private EtatCivil etatcivile;
 	
 	@Column(name="Residence")
+	@Enumerated(EnumType.STRING)
 	private Residence residence;
 	
 	@Column(name="Telephone")

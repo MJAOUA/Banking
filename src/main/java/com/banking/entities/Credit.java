@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,6 +25,7 @@ public class Credit implements Serializable {
 	private Long idcredit;
 	
 	@Column(name="Type")
+	@Enumerated(EnumType.STRING)
 	private CreditType type;
 
 	@Column(name="Duree")

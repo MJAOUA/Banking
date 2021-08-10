@@ -42,5 +42,10 @@ public class UserService implements IUserService{
 		User u = UserRepository.findById(Long.parseLong(id)).get();
 		return u;
 	}
+
+	public User RetrieveUserinfo(String username) {
+		
+		return UserRepository.RetrieveUserInfo(username);
+	}
 	
 }

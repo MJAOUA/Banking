@@ -72,6 +72,6 @@ public class CompteService implements ICompteService{
 		return CompteRepository.RetrieveActiveUserComptes(id);
 	}
 	
-	
+
 
 }

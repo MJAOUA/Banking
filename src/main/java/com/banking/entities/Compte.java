@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,6 +38,7 @@ public class Compte implements Serializable{
 	private float soldedisponible;
 	
 	@Column(name="Devise")
+	@Enumerated(EnumType.STRING)
 	private Devise devise;
 	
 	@Temporal(TemporalType.DATE)
@@ -43,6 +46,7 @@ public class Compte implements Serializable{
 	private Date datedecreation;
 	
 	@Column(name="Type")
+	@Enumerated(EnumType.STRING)
 	private CompteType type;
 	
 	@Column(name="RIB", unique = true)

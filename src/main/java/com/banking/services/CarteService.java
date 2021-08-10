@@ -38,4 +38,10 @@ public class CarteService implements ICarteService{
 		return CarteUpdated;
 	}	
 	
+	@Override
+	public List<Carte> RetrieveActiveUserCartes(Long id)
+	{
+		//Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return CarteRepository.RetrieveActiveUserCartes(id);
+	}
 }

@@ -16,4 +16,6 @@ public interface ICarteService {
 
 	Carte UpdateCarte(Carte c);
 
+	List<Carte> RetrieveActiveUserCartes(Long id);
+
 }

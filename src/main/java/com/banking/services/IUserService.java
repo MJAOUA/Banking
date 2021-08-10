@@ -17,5 +17,6 @@ public interface IUserService {
 	User UpdateUser(User u);
 
 	User RetrieveUser(String id);
+	public User RetrieveUserinfo(String username) ;
 
 }
