@@ -23,7 +23,7 @@ public class UserController {
 	@Autowired
 	UserService UserService;
   	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	//@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/userinfo/{username}")
 	@ResponseBody
 	public User getUserinfo(@PathVariable("username") String username) {

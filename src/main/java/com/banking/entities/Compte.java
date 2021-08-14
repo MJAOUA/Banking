@@ -50,7 +50,7 @@ public class Compte implements Serializable{
 	private CompteType type;
 	
 	@Column(name="RIB", unique = true)
-	private long rib;
+	private String rib;
 	
 	@Column(name="Etat")
 	private String etat;
@@ -126,11 +126,11 @@ public class Compte implements Serializable{
 		this.type = type;
 	}
 
-	public long getRib() {
+	public String getRib() {
 		return rib;
 	}
 
-	public void setRib(long rib) {
+	public void setRib(String rib) {
 		this.rib = rib;
 	}
 
