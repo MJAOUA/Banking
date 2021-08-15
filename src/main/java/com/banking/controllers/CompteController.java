@@ -18,7 +18,7 @@ import com.banking.services.CompteService;
 
 @RestController
 @CrossOrigin (origins="http://localhost:4200")
-public class compteController {
+public class CompteController {
 	
 	@Autowired
 	CompteService compteservice;
@@ -28,12 +28,11 @@ public class compteController {
 	  @PreAuthorize("hasRole('ROLE_ADMIN')")
 	  @GetMapping("/retrieve-all-comptes")
 	  @ResponseBody
-	  public List<Compte> getContracts(){
+	  public List<Compte> getComptes(){
 		  List<Compte> list = compteservice.RetrieveAllComptes();
 		  return list;
 	  }
 	
-		// http://localhost:8082/add-department
 	  	@PreAuthorize("hasRole('ROLE_ADMIN')")
 		@PostMapping("/add-compte")
 		@ResponseBody
