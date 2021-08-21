@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -33,6 +35,10 @@ public class Carte implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date datedexpiration;
 	
+	@NotBlank
+	@Size(max = 120)
+	private String password;
+	
 	@Column(name="Etat")
 	private boolean isActive;
 	
@@ -52,6 +58,14 @@ public class Carte implements Serializable {
 	@JoinColumn(name = "IdCompte",referencedColumnName="IdCompte")
 	 private Compte compte;
 
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public Long getIdcarte() {
 		return idcarte;

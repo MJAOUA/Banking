@@ -3,6 +3,7 @@ package com.banking.services;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.banking.entities.*;
 import com.banking.repository.*;
@@ -43,9 +44,17 @@ public class UserService implements IUserService{
 		return u;
 	}
 
+	@Override
 	public User RetrieveUserinfo(String username) {
 		
 		return UserRepository.RetrieveUserInfo(username);
+	}
+	
+	
+	@Override
+	public User UpdateThisUser(@RequestBody User user) throws Exception {
+
+		return UserRepository.save(user);
 	}
 	
 }
