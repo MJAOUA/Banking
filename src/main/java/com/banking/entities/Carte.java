@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +31,7 @@ public class Carte implements Serializable {
 	private Long idcarte;
 	
 	@Column(name="Numero")
-	private int numero;
+	private long numero;
 	
 	@Column(name="Date_d_expiration")	
 	@Temporal(TemporalType.DATE)
@@ -43,12 +45,14 @@ public class Carte implements Serializable {
 	private boolean isActive;
 	
 	@Column(name="Type_Carte")
+	@Enumerated(EnumType.STRING)
 	private CarteType cartetype;
 	
 	@Column(name="CCV2")
 	private int ccv2;
 	
 	@Column(name="Devise")
+	@Enumerated(EnumType.STRING)
 	private Devise devise;
 	
 	@Column(name="Plafond")
@@ -75,11 +79,11 @@ public class Carte implements Serializable {
 		this.idcarte = idcarte;
 	}
 
-	public int getNumero() {
+	public long getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(long numero) {
 		this.numero = numero;
 	}
 

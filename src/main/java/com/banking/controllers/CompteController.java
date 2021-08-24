@@ -47,4 +47,12 @@ public class CompteController {
 		public void removeCompte(@PathVariable("compte-id") Long compteId) {
 	  		compteservice.DeleteCompte(compteId);
 		}
+	  	
+	  	@PreAuthorize("hasRole('ROLE_USER')")
+		@GetMapping("/retrieveuseraccounts/{user-id}")
+		@ResponseBody
+		public List<Compte> RetrieveActiveUserComptes(@PathVariable("user-id") Long userid) {
+	  		return compteservice.RetrieveActiveUserComptes(userid);
+		}
+	  	
 }

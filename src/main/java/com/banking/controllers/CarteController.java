@@ -48,4 +48,11 @@ public class CarteController {
 		public void removeCarte(@PathVariable("Carte-id") Long CarteId) {
 	  		CarteService.DeleteCarte(CarteId);
 		}
+	  	
+	  	@PreAuthorize("hasRole('ROLE_USER')")
+		@GetMapping("/retrieveusercarte/{user-id}")
+		@ResponseBody
+		public List<Carte> RetrieveActiveUserComptes(@PathVariable("user-id") Long userid) {
+	  		return CarteService.RetrieveActiveUserCartes(userid);
+		}
 }
