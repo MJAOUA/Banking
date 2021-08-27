@@ -7,7 +7,7 @@ import com.banking.entities.*;
 
 
 @Repository
-public interface TransactionRepository extends CrudRepository<Transaction,Long>{
+public interface HistoriqueRepository extends CrudRepository<Historique,Long>{
 
 }
                                                             

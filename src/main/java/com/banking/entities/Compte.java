@@ -56,9 +56,7 @@ public class Compte implements Serializable{
 	private String etat;
 	
 	/* ---------------------*/
-	@OneToMany(mappedBy="compte")
-	@JsonIgnore
-	private List<Transaction> transactions;
+
 	
 	@OneToMany(mappedBy="compte")
 	@JsonIgnore
@@ -140,14 +138,6 @@ public class Compte implements Serializable{
 
 	public void setEtat(String etat) {
 		this.etat = etat;
-	}
-
-	public List<Transaction> getTransactions() {
-		return transactions;
-	}
-
-	public void setTransactions(List<Transaction> transactions) {
-		this.transactions = transactions;
 	}
 
 	public List<Carte> getCartes() {

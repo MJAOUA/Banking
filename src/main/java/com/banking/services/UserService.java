@@ -51,10 +51,4 @@ public class UserService implements IUserService{
 	}
 	
 	
-	@Override
-	public User UpdateThisUser(@RequestBody User user) throws Exception {
-
-		return UserRepository.save(user);
-	}
-	
 }

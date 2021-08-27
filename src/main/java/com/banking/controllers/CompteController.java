@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,15 +45,22 @@ public class CompteController {
 	  	@PreAuthorize("hasRole('ROLE_ADMIN')")
 		@DeleteMapping("/delete-compte/{compte-id}")
 		@ResponseBody
-		public void removeCompte(@PathVariable("compte-id") Long compteId) {
+		public void removeCompte(@PathVariable("compte-id") long compteId) {
 	  		compteservice.DeleteCompte(compteId);
 		}
 	  	
 	  	@PreAuthorize("hasRole('ROLE_USER')")
 		@GetMapping("/retrieveuseraccounts/{user-id}")
 		@ResponseBody
-		public List<Compte> RetrieveActiveUserComptes(@PathVariable("user-id") Long userid) {
+		public List<Compte> RetrieveActiveUserComptes(@PathVariable("user-id") long userid) {
 	  		return compteservice.RetrieveActiveUserComptes(userid);
+		}
+	  	
+	  	@PreAuthorize("hasRole('ROLE_USER')")
+	  	@PutMapping("/transfert/{compte1-id}/{compte2-id}/{montant}")
+		@ResponseBody
+		public void VirementCompteCompte(@PathVariable("compte1-id") String c1,@PathVariable("compte2-id") String c2,@PathVariable("montant") float montant) {
+			compteservice.TransfertCompteCompte(c1, c2, montant);
 		}
 	  	
 }

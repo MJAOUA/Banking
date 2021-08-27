@@ -3,7 +3,6 @@ package com.banking.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.banking.entities.*;
@@ -17,7 +16,8 @@ public class CompteService implements ICompteService{
 	@Autowired
 	CompteRepository CompteRepository;
 	UserRepository UserRepository;
-	TransactionRepository TransactionRepository;
+	HistoriqueRepository HistoriqueRepository;
+	HistoriqueService HistoriqueService;
 	
 	@Override
 	public List<Compte> RetrieveAllComptes(){
@@ -57,13 +57,17 @@ public class CompteService implements ICompteService{
 	} 
 	
 	@Override
-	public void TransfertCompteCompte(Long idc1,Long idc2, float montant){
-		CompteRepository.findById(idc1).get().setSoldeactuel(CompteRepository.findById(idc1).get().getSoldeactuel()-montant);
-		CompteRepository.findById(idc2).get().setSoldeactuel(CompteRepository.findById(idc1).get().getSoldeactuel()+montant);
-		Transaction tr = new Transaction();
-		tr.setId1(idc1);
-		tr.setId2(idc2);
-		tr.setMontant(montant);
+	public void TransfertCompteCompte(String rib1,String rib2, float montant){
+		Long idc1 = CompteRepository.FindByRib(rib1).getIdcompte();
+		Long idc2 = CompteRepository.FindByRib(rib2).getIdcompte();
+		Compte c1 = CompteRepository.findById(idc1).get();
+		Compte c2 = CompteRepository.findById(idc2).get();
+		c1.setSoldeactuel(CompteRepository.findById(idc1).get().getSoldeactuel()-montant);
+		c2.setSoldeactuel(CompteRepository.findById(idc2).get().getSoldeactuel()+montant);
+		c1.setSoldedisponible(CompteRepository.findById(idc1).get().getSoldedisponible()-montant);
+		//HistoriqueService.AddHistorique(idc1, idc2, montant, "Virement");
+		CompteRepository.save(c1);
+		CompteRepository.save(c2);
 	}
 	
 	@Override

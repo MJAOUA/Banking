@@ -1,6 +1,7 @@
 package com.banking.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Resource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,17 +23,17 @@ public class UserController {
 	@Autowired
 	UserService UserService;
   	
-	//@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/userinfo/{username}")
 	@ResponseBody
 	public User getUserinfo(@PathVariable("username") String username) {
 	 return UserService.RetrieveUserinfo(username);
 	}
 	
-	@PutMapping("/update-thisuser")
+	
+	@PutMapping("/updateuser")
 	@ResponseBody
-	public User updateUser(@RequestBody User user) throws Exception {
-	return UserService.UpdateThisUser(user);
+	public User updateUser(@RequestBody User user){
+	return UserService.UpdateUser(user);
 	}
 	
 }

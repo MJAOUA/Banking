@@ -20,8 +20,8 @@ public interface ICompteService {
 
 	void AssignCompte(Long compteid, Long userid);
 
-	void TransfertCompteCompte(Long idc1, Long idc2, float montant);
-
 	List<Compte> RetrieveActiveUserComptes(Long id);
+
+	void TransfertCompteCompte(String rib1, String rib2, float montant);
 
 }

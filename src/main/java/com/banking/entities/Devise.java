@@ -19,6 +19,7 @@ public enum Devise {
 	MRU,
 	BHD,
 	QAR,
-	CNY
+	CNY,
+	TND
 
 }

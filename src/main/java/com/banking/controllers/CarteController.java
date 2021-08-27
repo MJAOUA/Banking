@@ -33,7 +33,6 @@ public class CarteController {
 		  return list;
 	  }
 	
-		// http://localhost:8082/add-department
 	  	@PreAuthorize("hasRole('ROLE_ADMIN')")
 		@PostMapping("/add-Carte")
 		@ResponseBody

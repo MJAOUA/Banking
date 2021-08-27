@@ -9,6 +9,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -102,6 +104,7 @@ public class User {
 		this.reclamations = reclamations;
 	}
 
+	@JsonCreator
 	public User() {
 	}
 
@@ -109,6 +112,31 @@ public class User {
 		this.username = username;
 		this.email = email;
 		this.password = password;
+	}
+	
+	
+	@JsonCreator
+	public User(Long id, @NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email,
+			@NotBlank @Size(max = 120) String password, String nom, String prenom, String prenompere,
+			String prenomgrandpere, Date datenaissance, String adresse, int zip, String profession,
+			EtatCivil etatcivile, Residence residence, int telephone, Set<Role> roles) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.prenompere = prenompere;
+		this.prenomgrandpere = prenomgrandpere;
+		this.datenaissance = datenaissance;
+		this.adresse = adresse;
+		this.zip = zip;
+		this.profession = profession;
+		this.etatcivile = etatcivile;
+		this.residence = residence;
+		this.telephone = telephone;
+		this.roles = roles;
 	}
 
 	public Long getId() {

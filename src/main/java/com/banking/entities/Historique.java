@@ -8,22 +8,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @SuppressWarnings("serial")
 @Entity
-@Table(name="Transaction")
-public class Transaction implements Serializable {
+@Table(name="Historique")
+public class Historique implements Serializable {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY )
-	@Column(name="IdTransaction")
-	private Long idtransaction;
+	@Column(name="IdHistorique")
+	private long idHistorique;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="Date")
@@ -32,23 +28,30 @@ public class Transaction implements Serializable {
 	@Column(name="Montant")
 	private float montant;
 	
+	@Column(name="Description")
+	private String description;
+	
 	@Column(name="Du_Compte")
 	private long id1;
 	
 	@Column(name="Au_Compte")
 	private long id2;
 	
-	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name = "IdCompte",referencedColumnName="IdCompte")
-	 private Compte compte;
 
-	public Long getIdtransaction() {
-		return idtransaction;
+	public long getIdHistorique() {
+		return idHistorique;
 	}
 
-	public void setIdtransaction(Long idtransaction) {
-		this.idtransaction = idtransaction;
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setIdHistorique(long idHistorique) {
+		this.idHistorique = idHistorique;
 	}
 
 	public Date getDate() {
@@ -83,22 +86,19 @@ public class Transaction implements Serializable {
 		this.id2 = id2;
 	}
 
-	public Compte getCompte() {
-		return compte;
-	}
-
-	public void setCompte(Compte compte) {
-		this.compte = compte;
-	}
-
-	public Transaction() {
+	public Historique() {
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((idtransaction == null) ? 0 : idtransaction.hashCode());
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + (int) (id1 ^ (id1 >>> 32));
+		result = prime * result + (int) (id2 ^ (id2 >>> 32));
+		result = prime * result + (int) (idHistorique ^ (idHistorique >>> 32));
+		result = prime * result + Float.floatToIntBits(montant);
 		return result;
 	}
 
@@ -110,14 +110,29 @@ public class Transaction implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Transaction other = (Transaction) obj;
-		if (idtransaction == null) {
-			if (other.idtransaction != null)
+		Historique other = (Historique) obj;
+		if (date == null) {
+			if (other.date != null)
 				return false;
-		} else if (!idtransaction.equals(other.idtransaction))
+		} else if (!date.equals(other.date))
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (id1 != other.id1)
+			return false;
+		if (id2 != other.id2)
+			return false;
+		if (idHistorique != other.idHistorique)
+			return false;
+		if (Float.floatToIntBits(montant) != Float.floatToIntBits(other.montant))
 			return false;
 		return true;
 	}
+
+
 	
 
 }
