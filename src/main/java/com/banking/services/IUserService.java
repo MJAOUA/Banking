@@ -19,4 +19,6 @@ public interface IUserService {
 	User RetrieveUser(String id);
 	public User RetrieveUserinfo(String username) ;
 
+	List<User> RetrieveClients();
+
 }

@@ -15,8 +15,8 @@ public class MainTest {
 	@Autowired
 	ICompteService is;
 	
-	/*@Test		
+	@Test		
 	public void TestDeleteCompte() {
-		is.TransfertCompteCompte("1234657834212", "2132111231221", 1000);
-	}*/
+		is.AssignCompte(1L, 1L);
+	}
 }

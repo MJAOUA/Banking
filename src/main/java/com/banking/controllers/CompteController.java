@@ -63,4 +63,11 @@ public class CompteController {
 			compteservice.TransfertCompteCompte(c1, c2, montant);
 		}
 	  	
+	  	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	  	@PutMapping("/assign/{compteid}/{userid}")
+		@ResponseBody
+		public void AssignCompte(@PathVariable("compteid")long compteid,@PathVariable("userid")long userid) {
+			compteservice.AssignCompte(compteid,userid);
+		}
+	  	
 }

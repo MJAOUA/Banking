@@ -51,9 +51,11 @@ public class CompteService implements ICompteService{
 	}
 	
 	@Override
-	public void AssignCompte(Long compteid, Long userid){
-		User u =UserRepository.findById(userid).get();
-		CompteRepository.findById(compteid).get().setUser(u);
+	public void AssignCompte(long compteid, long userid){
+		User u =CompteRepository.RetrieveUser(userid);
+		Compte c = CompteRepository.findById(compteid).get();
+		c.setUser(u);
+		CompteRepository.save(c);		
 	} 
 	
 	@Override
@@ -76,6 +78,9 @@ public class CompteService implements ICompteService{
 		return CompteRepository.RetrieveActiveUserComptes(id);
 	}
 	
-
+	@Override
+	public User RetrieveUserById(long id) {
+		return CompteRepository.RetrieveUser(id);
+	}
 
 }

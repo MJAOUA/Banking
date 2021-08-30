@@ -50,5 +50,10 @@ public class UserService implements IUserService{
 		return UserRepository.RetrieveUserInfo(username);
 	}
 	
+	@Override
+	public List<User> RetrieveClients() {
+		
+		return UserRepository.RetrieveClients();
+	}
 	
 }

@@ -1,5 +1,7 @@
 package com.banking.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -34,6 +36,18 @@ public class UserController {
 	@ResponseBody
 	public User updateUser(@RequestBody User user){
 	return UserService.UpdateUser(user);
+	}
+	
+	@GetMapping("/getusers")
+	@ResponseBody
+	public List<User> getUsers() {
+	 return UserService.RetrieveAllUsers();
+	}
+	
+	@GetMapping("/getclients")
+	@ResponseBody
+	public List<User> getClients() {
+	 return UserService.RetrieveClients();
 	}
 	
 }

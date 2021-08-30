@@ -1,5 +1,6 @@
 package com.banking.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,4 +21,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	@Query("Select c from User c where c.username=:username")
 	User RetrieveUserInfo(@Param("username")String username);
 	
+	
+	@Query("Select c from User c where c.profession not like 'Admin' ")
+	List<User> RetrieveClients();
+	
+
 }

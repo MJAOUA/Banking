@@ -3,6 +3,7 @@ package com.banking.services;
 import java.util.List;
 
 import com.banking.entities.Compte;
+import com.banking.entities.User;
 
 
 
@@ -18,10 +19,13 @@ public interface ICompteService {
 
 	Compte RetrieveCompte(String id);
 
-	void AssignCompte(Long compteid, Long userid);
 
 	List<Compte> RetrieveActiveUserComptes(Long id);
 
 	void TransfertCompteCompte(String rib1, String rib2, float montant);
+
+	void AssignCompte(long compteid, long userid);
+
+	User RetrieveUserById(long id);
 
 }

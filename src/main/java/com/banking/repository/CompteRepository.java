@@ -17,5 +17,8 @@ public interface CompteRepository  extends JpaRepository<Compte,Long> {
 	
 	@Query("Select c from Compte c where c.rib=:rib")
 	Compte FindByRib(@Param("rib")String rib);
+
+	@Query("Select u from User u where u.id=:id")
+	User RetrieveUser(@Param("id")long id);
 	
 }
