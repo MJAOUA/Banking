@@ -64,7 +64,7 @@ public class CompteController {
 		}
 	  	
 	  	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	  	@PutMapping("/assign/{compteid}/{userid}")
+	  	@PutMapping("/assigncompte/{compteid}/{userid}")
 		@ResponseBody
 		public void AssignCompte(@PathVariable("compteid")long compteid,@PathVariable("userid")long userid) {
 			compteservice.AssignCompte(compteid,userid);

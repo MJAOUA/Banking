@@ -30,7 +30,7 @@ public class Carte implements Serializable {
 	@Column(name="IdCarte")
 	private Long idcarte;
 	
-	@Column(name="Numero")
+	@Column(name="Numero", unique =true)
 	private long numero;
 	
 	@Column(name="Date_d_expiration")	
@@ -57,6 +57,7 @@ public class Carte implements Serializable {
 	
 	@Column(name="Plafond")
 	private float plafond;
+	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "IdCompte",referencedColumnName="IdCompte")

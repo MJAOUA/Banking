@@ -18,4 +18,6 @@ public interface ICarteService {
 
 	List<Carte> RetrieveActiveUserCartes(Long id);
 
+	void AssignCarte(long compteid, long carteid);
+
 }

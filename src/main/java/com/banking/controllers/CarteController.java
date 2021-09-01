@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,9 +23,8 @@ public class CarteController {
 	
 	@Autowired
 	CarteService CarteService;
-
 	
-	// http://localhost:8082/retrieve-all-Cartes
+	
 	  @PreAuthorize("hasRole('ROLE_ADMIN')")
 	  @GetMapping("/retrieve-all-Cartes")
 	  @ResponseBody
@@ -53,5 +53,12 @@ public class CarteController {
 		@ResponseBody
 		public List<Carte> RetrieveActiveUserComptes(@PathVariable("user-id") Long userid) {
 	  		return CarteService.RetrieveActiveUserCartes(userid);
+		}
+	  	
+	  	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	  	@PutMapping("/assigncarte/{compteid}/{carteid}")
+		@ResponseBody
+		public void AssignCompte(@PathVariable("compteid")long compteid,@PathVariable("carteid")long carteid) {
+			CarteService.AssignCarte(compteid, carteid);
 		}
 }

@@ -12,6 +12,7 @@ public class CarteService implements ICarteService{
 
 	@Autowired
 	CarteRepository CarteRepository;
+	CompteRepository CompteRepository;
 	
 	@Override
 	public List<Carte> RetrieveAllCartes(){
@@ -44,4 +45,13 @@ public class CarteService implements ICarteService{
 		//Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		return CarteRepository.RetrieveActiveUserCartes(id);
 	}
+	
+	
+	@Override
+	public void AssignCarte(long compteid, long carteid){
+		Carte carte =CarteRepository.findById(carteid).get();
+		Compte compte = CompteRepository.findById(compteid).get();
+		carte.setCompte(compte);
+		CarteRepository.save(carte);		
+	} 
 }
