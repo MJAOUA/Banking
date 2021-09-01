@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.banking.repository.CompteRepository;
 import com.banking.services.ICompteService;
 import com.banking.twilio.SmsRequest;
 import com.banking.twilio.TwilioService;
@@ -21,13 +22,15 @@ public class MainTest {
 	ICompteService is;
 	@Autowired
 	TwilioService ts;
+	@Autowired
+	CompteRepository compterepository;
 	private static final Logger L= LogManager.getLogger(MainTest.class);
 
 	/*
 	@Test
 	public void test() {
-		SmsRequest smsRequest =new SmsRequest("+21653588922","TESTEST");
-		ts.sendSms(smsRequest);
+  		String phoneNumber = String.valueOf(compterepository.findById(compterepository.RetrieveIdByRib("2132111231221")).get().getUser().getTelephone());
+  		ts.sendOTP("+216"+phoneNumber);
 	}*/
 	
 	/*

@@ -82,5 +82,10 @@ public class CompteService implements ICompteService{
 	public User RetrieveUserById(long id) {
 		return CompteRepository.RetrieveUser(id);
 	}
+	
+	@Override
+	public long getIdbyRib(String rib) {
+		return CompteRepository.RetrieveIdByRib(rib);
+	}
 
 }

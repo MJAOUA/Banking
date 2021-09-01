@@ -2,6 +2,8 @@ package com.banking.controllers;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,7 +17,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.banking.entities.Compte;
+import com.banking.repository.CompteRepository;
 import com.banking.services.CompteService;
+import com.banking.twilio.TwilioService;
+import com.banking.twilio.Twilioinitializer;
 
 @RestController
 @CrossOrigin (origins="http://localhost:4200")
@@ -23,8 +28,21 @@ public class CompteController {
 	
 	@Autowired
 	CompteService compteservice;
+	TwilioService twilioService;
+	CompteRepository compterepository;
+	
+	private final static Logger Logger=LoggerFactory.getLogger(CompteController.class);
 
 	
+	@Autowired
+	public CompteController(CompteService compteservice, TwilioService twilioService,
+			CompteRepository compterepository) {
+		super();
+		this.compteservice = compteservice;
+		this.twilioService = twilioService;
+		this.compterepository = compterepository;
+	}
+
 	// http://localhost:8082/retrieve-all-comptes
 	  @PreAuthorize("hasRole('ROLE_ADMIN')")
 	  @GetMapping("/retrieve-all-comptes")
@@ -56,7 +74,15 @@ public class CompteController {
 	  		return compteservice.RetrieveActiveUserComptes(userid);
 		}
 	  	
-	  	@PreAuthorize("hasRole('ROLE_USER')")
+	  	@GetMapping("/otpverification/{compterib}")
+		@ResponseBody
+		public String sendOTPandVerify(@PathVariable("compterib") String compterib) {
+	  		String phoneNumber = String.valueOf(compterepository.findById(compterepository.RetrieveIdByRib(compterib)).get().getUser().getTelephone());
+	  		String code=twilioService.sendOTP("+216"+phoneNumber);
+	  		Logger.info(code);
+	  		return code;
+		}
+	  	
 	  	@PutMapping("/transfert/{compte1-id}/{compte2-id}/{montant}")
 		@ResponseBody
 		public void VirementCompteCompte(@PathVariable("compte1-id") String c1,@PathVariable("compte2-id") String c2,@PathVariable("montant") float montant) {

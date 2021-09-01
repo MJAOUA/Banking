@@ -28,4 +28,6 @@ public interface ICompteService {
 
 	User RetrieveUserById(long id);
 
+	long getIdbyRib(String rib);
+
 }

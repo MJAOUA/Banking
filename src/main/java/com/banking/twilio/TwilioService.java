@@ -18,4 +18,11 @@ public class TwilioService {
 		smsSender.sendSms(smsRequest);
 	}
 	
+	public String sendOTP(String Phonenumber) {
+		int min = 10000;
+	    int max = 99999;
+	    int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);	
+	    SmsRequest smsRequest = new SmsRequest(Phonenumber,"Votre code de validation est : "+String.valueOf(random_int));
+	    smsSender.sendSms(smsRequest);
+	    return String.valueOf(random_int);}
 }
